@@ -1,8 +1,10 @@
 import cv2
 import time
 import os
+from datetime import datetime
 
-dataPath = r'C:\Users\feder\Documents\GestionEmpleados\src\main\webapp\app\home\Reconocimiento-Facial-Python\Data'
+dataPath = r'C:\Users\feder\Documents\server\Reconocimiento-Facial-Python\Data'
+
 
 def reconocimientoRostro():
 	imagePaths = os.listdir(dataPath)
@@ -37,14 +39,16 @@ def reconocimientoRostro():
 				cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
 				ficho += 1
 				if ficho == 30:
-					return {'status': 'OK', 'code': '200','message':'Ficho con exito!'}
+					now = datetime.now()
+					dt_string = now.strftime('%d/%m/%Y %H:%M:%S')
+					return {'status': 'OK', 'code': '200','body': '{}'.format(imagePaths[result[0]]), 'time': dt_string}
 				
 			else:
 				cv2.putText(frame,'Desconocido',(x,y-20),2,0.8,(0,0,255),1,cv2.LINE_AA)
 				cv2.rectangle(frame, (x,y),(x+w,y+h),(0,0,255),2)
 				ficho -= 1
 				if ficho < -30:
-					return {'status': 'ERROR', 'code': '404','message':'No se reconocio el rostro'}
+					return {'status': 'ERROR', 'code': '404'}
 			
 		cv2.imshow('frame',frame)
 		k = cv2.waitKey(1)

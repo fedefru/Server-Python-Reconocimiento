@@ -2,7 +2,7 @@ import cv2
 import os
 import numpy as np
 
-dataPath = r'C:\Users\feder\Documents\GestionEmpleados\src\main\webapp\app\home\Reconocimiento-Facial-Python\Data'
+dataPath = r'C:\Users\feder\Documents\server\Reconocimiento-Facial-Python\Data'
 peopleList = os.listdir(dataPath)
 print('Lista de personas: ', peopleList)
 
