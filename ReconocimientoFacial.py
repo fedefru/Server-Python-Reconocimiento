@@ -38,16 +38,15 @@ def reconocimientoRostro():
 				cv2.putText(frame,'{}'.format(imagePaths[result[0]]),(x,y-25),2,1.1,(0,255,0),1,cv2.LINE_AA)
 				cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
 				ficho += 1
-				if ficho == 30:
-					now = datetime.now()
-					dt_string = now.strftime('%d/%m/%Y %H:%M:%S')
+				if ficho == 50:
+					dt_string = datetime.now().replace(microsecond=0).isoformat()
 					return {'status': 'OK', 'code': '200','body': '{}'.format(imagePaths[result[0]]), 'time': dt_string}
 				
 			else:
 				cv2.putText(frame,'Desconocido',(x,y-20),2,0.8,(0,0,255),1,cv2.LINE_AA)
 				cv2.rectangle(frame, (x,y),(x+w,y+h),(0,0,255),2)
 				ficho -= 1
-				if ficho < -30:
+				if ficho < -50:
 					return {'status': 'ERROR', 'code': '404'}
 			
 		cv2.imshow('frame',frame)
