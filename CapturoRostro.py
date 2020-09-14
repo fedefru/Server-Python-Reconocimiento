@@ -36,7 +36,7 @@ def capturoRostro(nombre):
 		cv2.imshow('frame',frame)
 
 		k =  cv2.waitKey(1)
-		if k == 27 or count >= 300:
+		if k == 27 or count >= 500:
 			break
 			
 	cap.release()

@@ -7,6 +7,7 @@ CORS(app)
 app.config["DEBUG"] = True
 
 #python -m flask run  || Para ejecutar
+#CapturoRostro.capturoRostro('FFrutos')
 
 @app.route('/reconocimiento')
 def reco_ok():
