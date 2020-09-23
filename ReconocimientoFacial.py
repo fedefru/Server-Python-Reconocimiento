@@ -45,7 +45,7 @@ def reconocimientoRostro():
 				cv2.putText(frame,'{}'.format(result),(x,y-5),1,1.3,(255,255,0),1,cv2.LINE_AA)
 
 				# LBPHFace
-				if result[1] < 60:
+				if result[1] < 80:
 					cv2.putText(frame,'{}'.format(imagePaths[result[0]]),(x,y-25),2,1.1,(0,255,0),1,cv2.LINE_AA)
 					cv2.rectangle(frame, (x,y),(x+w,y+h),(0,255,0),2)
 					ficho += 1
@@ -63,8 +63,9 @@ def reconocimientoRostro():
 							os.makedirs(personPath)	
 						
 						cv2.imwrite('Registros/'+person+'/'+person+'_'+dt_path+'.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 100])
+						ruta_imagen = 'Registros/'+person+'/'+person+'_'+dt_path+'.jpg'
 						
-						return {'status': 'OK', 'code': '200','body': person, 'time': dt_string}
+						return {'status': 'OK', 'code': '200','body': person, 'time': {}, 'ruta_imagen': ruta_imagen, 'date': dt_path}
 				else:
 					cv2.putText(frame,'Desconocido',(x,y-20),2,0.8,(0,0,255),1,cv2.LINE_AA)
 					cv2.rectangle(frame, (x,y),(x+w,y+h),(0,0,255),2)
